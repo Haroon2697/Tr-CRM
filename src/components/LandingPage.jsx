@@ -1,51 +1,59 @@
+"use client"
+
 import React, { useState, useEffect } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronDown, BarChart2, Users, Calendar, Mail, Settings, Zap } from "lucide-react"
 
-const CRMShowcase = () => {
-  const images = [
-    { src: "/images/crm-dashboard.jpg", alt: "CRM Dashboard" },
-    { src: "/images/customer-profile.jpg", alt: "Customer Profile" },
-    { src: "/images/analytics-view.jpg", alt: "Analytics View" },
-    { src: "/images/task-management.jpg", alt: "Task Management" },
-    { src: "/images/email-integration.jpg", alt: "Email Integration" },
-  ]
-
-  return (
-    <section className="py-20 bg-gradient-to-r from-gray-900 to-black relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
-            Experience Our CRM in Action
-          </span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              className="relative h-64 rounded-lg overflow-hidden shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src={image.src || "/placeholder.svg"}
-                alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white text-lg font-semibold">{image.alt}</h3>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+const features = [
+  {
+    icon: BarChart2,
+    title: "Advanced Analytics",
+    description:
+      "Gain deep insights with our AI-powered analytics engine. Transform raw data into actionable insights with real-time dashboards and predictive modeling.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Analytics Dashboard",
+  },
+  {
+    icon: Users,
+    title: "Intelligent Lead Scoring",
+    description:
+      "Prioritize leads with machine learning algorithms. Our AI automatically ranks prospects based on their likelihood to convert, helping you focus on high-value opportunities.",
+    image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Team Collaboration",
+  },
+  {
+    icon: Calendar,
+    title: "Smart Scheduling",
+    description:
+      "AI-optimized meeting scheduling for maximum efficiency. Automatically find the best meeting times across multiple calendars and time zones.",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Calendar Management",
+  },
+  {
+    icon: Mail,
+    title: "Predictive Email Marketing",
+    description:
+      "Personalized email campaigns driven by predictive analytics. Engage your customers with perfectly timed, highly relevant content.",
+    image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Email Marketing",
+  },
+  {
+    icon: Settings,
+    title: "Customizable Workflows",
+    description:
+      "Design complex, automated workflows with our visual editor. Streamline your processes and eliminate repetitive tasks.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Workflow Automation",
+  },
+  {
+    icon: Zap,
+    title: "Real-time Collaboration",
+    description:
+      "Seamless team collaboration with instant updates and notifications. Keep your entire team aligned and productive.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=80",
+    imageAlt: "Team Collaboration",
+  },
+]
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -62,15 +70,14 @@ export default function LandingPage() {
   }, [])
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-gray-100 overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-black text-gray-100">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <motion.div
           className="absolute inset-0 bg-gradient-to-b from-red-900 via-black to-gray-900"
           style={{ y: backgroundY }}
         />
-        <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-20" />
-        <div className="absolute inset-0 bg-[url('/images/particles.svg')] opacity-30 animate-float" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
       </div>
 
       {/* Header */}
@@ -81,7 +88,13 @@ export default function LandingPage() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <img src="/images/logo.svg" alt="Advanced CRM Logo" className="w-10 h-10 mr-2" />
+            <img
+              src="/placeholder.svg?height=40&width=40"
+              alt="Advanced CRM Logo"
+              width={40}
+              height={40}
+              className="mr-2"
+            />
             <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
               AdvancedCRM
             </span>
@@ -119,23 +132,23 @@ export default function LandingPage() {
           <motion.div
             className="absolute inset-0 z-0"
             style={{
-              backgroundImage: "url('/images/hero-background.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundImage: "radial-gradient(circle at 50% 50%, #3b0d0c, #0c0a0a)",
               opacity,
             }}
           />
           <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
             <motion.h1
-              className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700"
+              className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
             >
-              The Future of CRM is Here
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
+                The Future of CRM is Here
+              </span>
             </motion.h1>
             <motion.p
-              className="text-xl sm:text-2xl md:text-3xl mb-10 max-w-3xl mx-auto"
+              className="text-xl sm:text-2xl md:text-3xl mb-10 max-w-3xl mx-auto text-gray-300"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -147,7 +160,7 @@ export default function LandingPage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse">
+              <button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
                 Start Your Free Trial
               </button>
             </motion.div>
@@ -158,88 +171,148 @@ export default function LandingPage() {
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 relative overflow-hidden">
+        <section id="features" className="py-20 bg-gray-900 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 to-black/10 z-0" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 className="text-4xl font-bold text-center mb-16">
+            <motion.h2
+              className="text-4xl font-bold text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
                 Cutting-Edge Features
               </span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {[
-                {
-                  icon: BarChart2,
-                  title: "Advanced Analytics",
-                  description: "Gain deep insights with our AI-powered analytics engine.",
-                  image: "/images/advanced-analytics.jpg",
-                },
-                {
-                  icon: Users,
-                  title: "Intelligent Lead Scoring",
-                  description: "Prioritize leads with machine learning algorithms.",
-                  image: "/images/lead-scoring.jpg",
-                },
-                {
-                  icon: Calendar,
-                  title: "Smart Scheduling",
-                  description: "AI-optimized meeting scheduling for maximum efficiency.",
-                  image: "/images/smart-scheduling.jpg",
-                },
-                {
-                  icon: Mail,
-                  title: "Predictive Email Marketing",
-                  description: "Personalized email campaigns driven by predictive analytics.",
-                  image: "/images/email-marketing.jpg",
-                },
-                {
-                  icon: Settings,
-                  title: "Customizable Workflows",
-                  description: "Design complex, automated workflows with our visual editor.",
-                  image: "/images/custom-workflows.jpg",
-                },
-                {
-                  icon: Zap,
-                  title: "Real-time Collaboration",
-                  description: "Seamless team collaboration with instant updates and notifications.",
-                  image: "/images/real-time-collab.jpg",
-                },
-              ].map((feature, index) => (
+            </motion.h2>
+            <div className="space-y-20">
+              {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gray-800/30 backdrop-blur-md rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-500/50 group hover:border-red-500 overflow-hidden"
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
+                  className={`flex flex-col ${
+                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                  } gap-8 items-center`}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
                 >
-                  <div className="relative mb-6 overflow-hidden rounded-lg h-40">
-                    <img
-                      src={feature.image || "/placeholder.svg"}
-                      alt={feature.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
-                    <feature.icon className="w-12 h-12 text-red-500 absolute bottom-4 left-4" />
+                  <div className="w-full lg:w-1/2">
+                    <div className="relative h-[300px] lg:h-[400px] rounded-2xl overflow-hidden group">
+                      <div className="absolute inset-0">
+                        <img
+                          src={feature.image || "/placeholder.svg"}
+                          alt={feature.imageAlt}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      <div className="absolute bottom-4 left-4">
+                        <feature.icon className="w-8 h-8 text-red-500" />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                    {feature.description}
-                  </p>
+                  <div className="w-full lg:w-1/2 space-y-4">
+                    <motion.h3
+                      className="text-2xl font-bold text-red-400"
+                      initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                      {feature.title}
+                    </motion.h3>
+                    <motion.p
+                      className="text-gray-300 text-lg leading-relaxed"
+                      initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                    >
+                      {feature.description}
+                    </motion.p>
+                    <motion.button
+                      className="inline-flex items-center space-x-2 text-red-400 hover:text-red-300 transition-colors duration-300"
+                      initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                      whileHover={{ x: 10 }}
+                    >
+                      <span>Learn more</span>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </motion.button>
+                  </div>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CRM Showcase */}
-        <section id="showcase">
-          <CRMShowcase />
+        {/* CRM Showcase Section */}
+        <section id="showcase" className="py-20 bg-black relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-tl from-red-900/20 to-black/20 z-0" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.h2
+              className="text-4xl font-bold text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
+                Experience the Future of CRM
+              </span>
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ x: -50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
+              >
+                <h3 className="text-2xl font-semibold text-red-400">Intuitive Interface</h3>
+                <p className="text-gray-300">
+                  Our CRM boasts a sleek, user-friendly interface that puts all the information you need at your
+                  fingertips. Designed with the latest UX principles, it ensures a smooth and efficient workflow for
+                  your team.
+                </p>
+                <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-md transition-colors duration-300">
+                  Explore Interface
+                </button>
+              </motion.div>
+              <motion.div
+                initial={{ x: 50, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl group"
+              >
+                <div className="absolute inset-0">
+                  <img
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=80"
+                    alt="CRM Interface"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h4 className="text-xl font-semibold mb-2 text-red-400">Dashboard Overview</h4>
+                    <p className="text-sm text-gray-300">
+                      Get a bird's-eye view of your business with our comprehensive dashboard.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </section>
 
         {/* AI Integration Section */}
-        <section id="ai" className="py-20 relative overflow-hidden">
+        <section id="ai" className="py-20 bg-gradient-to-b from-black to-gray-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div
@@ -288,9 +361,9 @@ export default function LandingPage() {
                 transition={{ duration: 0.8 }}
               >
                 <img
-                  src="/images/ai-integration.jpg"
+                  src="https://images.unsplash.com/photo-1488229297570-58520851e868?auto=format&fit=crop&w=1800&q=80"
                   alt="AI Integration Visualization"
-                  className="w-full h-full object-cover rounded-xl shadow-2xl"
+                  className="w-full h-auto rounded-xl shadow-2xl"
                 />
               </motion.div>
             </div>
@@ -298,13 +371,19 @@ export default function LandingPage() {
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="py-20 relative overflow-hidden">
+        <section id="pricing" className="py-20 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-center mb-16">
+            <motion.h2
+              className="text-4xl font-bold text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
                 Flexible Pricing for Every Business
               </span>
-            </h2>
+            </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
@@ -337,7 +416,7 @@ export default function LandingPage() {
               ].map((plan, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gray-900/50 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-red-500/50 hover:border-red-500"
+                  className="bg-gray-900 rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col border border-red-900/50"
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
@@ -376,15 +455,33 @@ export default function LandingPage() {
         </section>
 
         {/* Call to Action */}
-        <section className="py-20 relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-r from-red-900 to-black">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl font-bold mb-8">Ready to Revolutionize Your Customer Relationships?</h2>
-            <p className="text-xl mb-10 text-gray-300">
+            <motion.h2
+              className="text-4xl font-bold mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              Ready to Revolutionize Your Customer Relationships?
+            </motion.h2>
+            <motion.p
+              className="text-xl mb-10 text-gray-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               Join thousands of businesses that have transformed their CRM experience with our advanced, AI-powered
               platform.
-            </p>
+            </motion.p>
             <motion.button
               className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -395,7 +492,7 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black/50 backdrop-blur-md text-gray-400 py-12">
+      <footer className="bg-black text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
