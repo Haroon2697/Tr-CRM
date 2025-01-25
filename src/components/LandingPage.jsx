@@ -90,13 +90,13 @@ export default function LandingPage() {
           <div className="flex items-center">
             <img
               src="/placeholder.svg?height=40&width=40"
-              alt="Advanced CRM Logo"
+              alt="CRM Logo"
               width={40}
               height={40}
               className="mr-2"
             />
             <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">
-              AdvancedCRM
+              CRM
             </span>
           </div>
           <nav>
