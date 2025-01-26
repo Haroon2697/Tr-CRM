@@ -28,3 +28,9 @@ body {
 #root {
   width: 100%;
 }
+
+.bg-pattern {
+  background-image: linear-gradient(45deg, #E3FFCC 25%, transparent 25%), 
+                    linear-gradient(-45deg, #E3FFCC 25%, transparent 25%);
+  background-size: 20px 20px;
+}
